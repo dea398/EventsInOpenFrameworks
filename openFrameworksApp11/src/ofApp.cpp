@@ -1,0 +1,235 @@
+#include "ofApp.h"
+
+
+GLfloat angleCube = 0.0f;     // Rotational angle for cube
+//--------------------------------------------------------------
+void ofApp::setup()
+{
+	//ofSetFrameRate(60);
+	button.addListener(this, &ofApp::buttonPressed);
+
+	gui.setup();
+	gui.add(radius.setup("radius", 140, 10, 300));
+	gui.add(button.setup("Add Sphere"));
+	
+	box.set(200);
+	//box.move(700, 100, -200);
+	sphere.set(200, 20);
+	sphere.setGlobalPosition(ofGetWidth() / 2 + 200, ofGetHeight() / 2 + 100, -400);
+}
+
+void ofApp::exit()
+{
+	button.removeListener(this, &ofApp::buttonPressed);
+}
+
+//--------------------------------------------------------------
+void ofApp::update()
+{
+
+}
+
+//--------------------------------------------------------------
+void ofApp::draw()
+{
+	for (size_t x = 0; x < j; x++)
+	{
+		ofDrawSphere(200 * (x + 1), 200 * (x + 1), radius);
+	}
+
+	gui.draw();
+
+	ofEnableDepthTest();
+	cam.begin();
+
+	ofPushMatrix();
+	DrawCube();
+	ofPopMatrix();
+
+	ofPushMatrix();
+	OtherCube();
+	ofPopMatrix();
+
+	
+	ofPushMatrix();
+	ofTranslate(700, 100, -200);
+	//box.move(0,0,0);
+	//ofRotate(angleCube, 1.0f, 1.0f, 1.0f);
+	
+	box.rotate(-0.15f, 1.0f, 1.0f, 1.0f);
+	box.drawWireframe();
+	ofPopMatrix();
+	
+	ofSetColor(ofColor::white);
+	
+	sphere.drawWireframe();
+	cam.end();
+	ofDisableDepthTest();
+}
+
+void ofApp::OtherCube()
+{
+	// Render a color-cube consisting of 6 quads with different colors
+	glTranslatef(200.0f, 500.0f, -100.0f);
+	//glRotatef(angleCube, 1.0f, 1.0f, 1.0f);  // Rotate about (1,1,1)-axis [NEW]
+	//play with values above
+	glBegin(GL_QUADS);                // Begin drawing the color cube with 6 quads
+	   // Top face (y = k)
+	   // Define vertices in counter-clockwise (CCW) order with normal pointing out
+	ofSetColor(0, 255, 0);
+	//glColor3f(0.0f, 1.0f, 0.0f);     // Green
+	glVertex3f(k, k, -k);
+	glVertex3f(-k, k, -k);
+	glVertex3f(-k, k, k);
+	glVertex3f(k, k, k);
+
+	// Bottom face (y = -k)
+	glColor3f(k, 0.5f, 0.0f);     // Orange
+	glVertex3f(k, -k, k);
+	glVertex3f(-k, -k, k);
+	glVertex3f(-k, -k, -k);
+	glVertex3f(k, -k, -k);
+
+	// Front face  (z = k)
+	glColor3f(k, 0.0f, 0.0f);     // Red
+	glVertex3f(k, k, k);
+	glVertex3f(-k, k, k);
+	glVertex3f(-k, -k, k);
+	glVertex3f(k, -k, k);
+
+	// Back face (z = -k)
+	glColor3f(k, k, 0.0f);     // Yellow
+	glVertex3f(k, -k, -k);
+	glVertex3f(-k, -k, -k);
+	glVertex3f(-k, k, -k);
+	glVertex3f(k, k, -k);
+
+	// Left face (x = -k)
+	glColor3f(0.0f, 0.0f, k);     // Blue
+	glVertex3f(-k, k, k);
+	glVertex3f(-k, k, -k);
+	glVertex3f(-k, -k, -k);
+	glVertex3f(-k, -k, k);
+
+	// Right face (x = k)
+	glColor3f(k, 0.0f, k);     // Magenta
+	glVertex3f(k, k, -k);
+	glVertex3f(k, k, k);
+	glVertex3f(k, -k, k);
+	glVertex3f(k, -k, -k);
+	glEnd();  // End of drawing color-cube
+
+	angleCube -= 0.15f;
+}
+
+void ofApp::DrawCube()
+{
+	glTranslatef(400.0f, 250.0f, -400.0f);  // Move right and into the screen
+	glRotatef(angleCube, 1.0f, 1.0f, 1.0f);
+
+	glBegin(GL_QUADS);
+	// Top face (y = i)
+	glColor3f(0.0f, 1.0f, 0.0f);     // Green
+	glVertex3f(i, i, -i);
+	glVertex3f(-i, i, -i);
+	glVertex3f(-i, i, i);
+	glVertex3f(i, i, i);
+
+	// Bottom face (y = -i)
+	glColor3f(1.0f, 0.5f, 0.0f);     // Orange
+	glVertex3f(i, -i, i);
+	glVertex3f(-i, -i, i);
+	glVertex3f(-i, -i, -i);
+	glVertex3f(i, -i, -i);
+
+	// Front face  (z = i)
+	glColor3f(1.0f, 0.0f, 0.0f);     // Red
+	glVertex3f(i, i, i);
+	glVertex3f(-i, i, i);
+	glVertex3f(-i, -i, i);
+	glVertex3f(i, -i, i);
+
+	// Back face (z = -i)
+	glColor3f(1.0f, 1.0f, 0.0f);     // Yellow
+	glVertex3f(i, -i, -i);
+	glVertex3f(-i, -i, -i);
+	glVertex3f(-i, i, -i);
+	glVertex3f(i, i, -i);
+
+	// Left face (x = -i)
+	glColor3f(0.0f, 0.0f, 1.0f);     // Blue
+	glVertex3f(-i, i, i);
+	glVertex3f(-i, i, -i);
+	glVertex3f(-i, -i, -i);
+	glVertex3f(-i, -i, i);
+
+	// Right face (x = i)
+	glColor3f(1.0f, 0.0f, 1.0f);     // Magenta
+	glVertex3f(i, i, -i);
+	glVertex3f(i, i, i);
+	glVertex3f(i, -i, i);
+	glVertex3f(i, -i, -i);
+	glEnd();
+
+	angleCube -= 0.15f;
+}
+
+void ofApp::buttonPressed()
+{
+	++j;
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseMoved(int x, int y ){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseEntered(int x, int y){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseExited(int x, int y){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::windowResized(int w, int h){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
