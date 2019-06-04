@@ -1,9 +1,7 @@
-﻿  ofApp.cpp
-c:\users\edwin\documents\of_v0.10.1_vs2017_release\apps\myapps\openframeworksapp1\src\ofapp.cpp(35): warning C4018: '<': signed/unsigned mismatch
-c:\users\edwin\documents\of_v0.10.1_vs2017_release\apps\myapps\openframeworksapp1\src\ofapp.cpp(54): warning C4996: 'ofRotate': Use ofRotateDeg or ofRotateRad
-  c:\users\edwin\documents\of_v0.10.1_vs2017_release\libs\openframeworks\graphics\ofgraphics.h(1008): note: see declaration of 'ofRotate'
-c:\users\edwin\documents\of_v0.10.1_vs2017_release\apps\myapps\openframeworksapp1\src\ofapp.cpp(60): warning C4996: 'ofBox': Use ofDrawBox instead.
-  c:\users\edwin\documents\of_v0.10.1_vs2017_release\libs\openframeworks\graphics\of3dgraphics.h(174): note: see declaration of 'ofBox'
+﻿  main.cpp
+  ofApp.cpp
+c:\users\edwin\documents\of_v0.10.1_vs2017_release\apps\myapps\openframeworksapp1\src\ofapp.cpp(79): warning C4996: 'ofNode::rotate': Use the Deg/Rad version
+  c:\users\edwin\documents\of_v0.10.1_vs2017_release\libs\openframeworks\3d\ofnode.h(307): note: see declaration of 'ofNode::rotate'
   openFrameworksApp1.vcxproj -> C:\Users\Edwin\Documents\of_v0.10.1_vs2017_release\apps\myApps\openFrameworksApp1\bin\openFrameworksApp1_debug.exe
   
   	                   2	C:\Users\Edwin\Documents\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\Win32\

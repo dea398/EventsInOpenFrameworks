@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include <GL/freeglut.h>
+#include "ExtendedSphere.h"
+#include "ExtendedBox.h"
 
 class ofApp : public ofBaseApp{
 
@@ -10,7 +12,9 @@ class ofApp : public ofBaseApp{
 		ofxFloatSlider radius;
 		ofxPanel gui;
 		ofxButton button;
-		
+		std::list<ExtendedSphere> spheres;
+		ExtendedBox eBox;
+
 		int j = 0;
 		int i = 100;
 		int k = 150;
@@ -19,6 +23,8 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+
+		void onMouseIn(ofVec2f & e);
 
 		void DrawCube();
 
