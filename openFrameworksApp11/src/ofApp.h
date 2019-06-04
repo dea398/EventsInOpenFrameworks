@@ -2,7 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-
+#include "ExtendedSphere.h"
+#include "ExtendedBox.h"
 
 class ofApp : public ofBaseApp{
 
@@ -14,6 +15,10 @@ class ofApp : public ofBaseApp{
 		ofBoxPrimitive box;
 		ofSpherePrimitive sphere;
 		ofEasyCam cam;
+
+		std::list<ExtendedSphere> spheres;
+
+		ExtendedBox eBox;
 
 		int j = 0;
 		int i = 100;
@@ -40,5 +45,5 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+		void onMouseIn(ofVec2f & e);
 };

@@ -185,6 +185,9 @@ C:\Users\Edwin\Documents\of_v0.10.1_vs2017_release\addons\ofxGui\src;%(Additiona
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="src\ExtendedBox.cpp" />
+    <ClCompile Include="src\ExtendedSphere.cpp" />
+    <ClCompile Include="src\GenericObjectWithEvents.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
   </ItemGroup>
@@ -200,6 +203,9 @@ C:\Users\Edwin\Documents\of_v0.10.1_vs2017_release\addons\ofxGui\src;%(Additiona
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
+    <ClInclude Include="src\ExtendedBox.h" />
+    <ClInclude Include="src\ExtendedSphere.h" />
+    <ClInclude Include="src\GenericObjectWithEvents.h" />
     <ClInclude Include="src\ofApp.h" />
   </ItemGroup>
   <ItemGroup>

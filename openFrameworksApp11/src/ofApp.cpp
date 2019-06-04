@@ -14,8 +14,14 @@ void ofApp::setup()
 	
 	box.set(200);
 	//box.move(700, 100, -200);
+	eBox.setPosition(150, 300, 0);
 	sphere.set(200, 20);
 	sphere.setGlobalPosition(ofGetWidth() / 2 + 200, ofGetHeight() / 2 + 100, -400);
+
+	ofAddListener(eBox.clickedInside, //the ofEvent that we want to listen to. In this case exclusively to the circleEvent of redCircle (red circle) object.
+	this, //pointer to the class that is going to be listening. it can be a pointer to any object. There's no need to declare the listeners within the class that's going to listen.
+	&ofApp::onMouseIn);//pointer to the method that's going to be called when a new event is broadcasted (callback method). The parameters of the event are passed to this method.
+
 }
 
 void ofApp::exit()
@@ -32,9 +38,16 @@ void ofApp::update()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	for (size_t x = 0; x < j; x++)
+	/*for (size_t x = 0; x < j; x++)
 	{
-		ofDrawSphere(200 * (x + 1), 200 * (x + 1), radius);
+		ofDrawSphere(200 * (x + 1), 200 * (x + 1), radius);	
+	}*/
+	int x = 0;
+	for (auto & s : spheres)
+	{
+		s.setPosition(200 * (x + 1), 200 * (x + 1), 0);
+		s.draw();
+		++x;
 	}
 
 	gui.draw();
@@ -59,11 +72,19 @@ void ofApp::draw()
 	box.rotate(-0.15f, 1.0f, 1.0f, 1.0f);
 	box.drawWireframe();
 	ofPopMatrix();
-	
-	ofSetColor(ofColor::white);
-	
+
+
+	ofSetColor(ofColor::red);
 	sphere.drawWireframe();
+
 	cam.end();
+
+	ofPushMatrix();
+	ofSetColor(ofColor::white);
+	eBox.rotate(-0.15f, 1.0f, 1.0f, 1.0f);
+	eBox.draw();
+	ofPopMatrix();
+
 	ofDisableDepthTest();
 }
 
@@ -176,7 +197,8 @@ void ofApp::DrawCube()
 
 void ofApp::buttonPressed()
 {
-	++j;
+	//++j;
+	spheres.emplace_back(50);
 }
 
 //--------------------------------------------------------------
@@ -227,6 +249,11 @@ void ofApp::windowResized(int w, int h){
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
 
+}
+
+void ofApp::onMouseIn(ofVec2f & e)
+{
+	eBox.setColor(ofColor(rand() * 255, rand() * 255, rand() * 255));
 }
 
 //--------------------------------------------------------------

@@ -15,6 +15,7 @@ void ofApp::setup()
 	ofBackground(0, 0, 0);
 
 	box.set(200);
+	
 	//box.move(700, 100, -200);
 }
 
@@ -54,6 +55,7 @@ void ofApp::draw()
 		ofRotate(angleCube, 1.0f, 1.0f, 1.0f);
 		//box.rotate(-0.15f, 1.0f, 1.0f, 1.0f);
 		//box.move(10, 0, 0);
+		
 		box.drawWireframe();
 	ofPopMatrix();
 
